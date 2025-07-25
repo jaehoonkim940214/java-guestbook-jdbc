@@ -24,33 +24,6 @@ Maven 기반 프로젝트로 JDBC를 이용해 DB와 연동하며, 간단한 웹
 
 ---
 
-## 📂 파일 구조 예시
-
-├── src/
-│ └── main/
-│ └── java/
-│ └── com/example/guestbook/
-│ ├── GuestbookServer.java
-│ ├── DBUtil.java
-│ └── Message.java
-├── pom.xml
-└── README.md
-
-pgsql
-복사
-편집
-
----
-
-## ⚙️ DB 테이블 구조
-
-```sql
-CREATE TABLE messages (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    message TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 🚀 실행 방법
 MySQL 서버 실행 (포트: 3307)
 비밀번호: 1234 (설정한 값 기준)
@@ -65,19 +38,3 @@ arduino
 http://localhost:8080
 메시지 작성 → DB에 저장
 작성된 메시지 목록 출력
-
-🧪 문제 해결 경험
-문제
-MySQL 접속 오류 / 포트 충돌 / 인코딩 깨짐 문제 발생
-
-해결
-jdbc:mysql://localhost:3307/guestbook?useUnicode=true&characterEncoding=UTF-8 설정
-
-MySQL 드라이버 추가 (pom.xml)
-
-IntelliJ에서 Maven Reimport 및 JDK 설정 재확인
-
-🙋‍♂️ 만든이
-김재훈 (인천재능대학교 컴퓨터소프트웨어학과)
-
-GitHub: jaehoonkim940214
