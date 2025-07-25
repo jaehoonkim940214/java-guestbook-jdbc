@@ -1,38 +1,83 @@
-# Java Guestbook JDBC
+# 📝 방명록 웹 애플리케이션 (Java + MySQL)
 
-콘솔 기반의 간단한 방명록 시스템입니다.  
-사용자의 이름과 메시지를 입력받아 MySQL 데이터베이스에 저장하고,  
-저장된 메시지를 시간순으로 조회할 수 있도록 구현했습니다.
+IntelliJ와 Java, MySQL을 사용하여 구현한 방명록 웹 애플리케이션입니다.  
+Maven 기반 프로젝트로 JDBC를 이용해 DB와 연동하며, 간단한 웹서버 기능을 포함합니다.
 
 ---
 
 ## 📌 주요 기능
 
-- ✅ 사용자 입력을 통해 메시지 DB에 저장
-- ✅ 저장된 메시지를 시간순으로 조회
-- ✅ MySQL 연결 성공/실패 메시지 처리
-- ✅ 메뉴 선택 기반 콘솔 UI
+- 사용자 이름과 메시지를 입력하면 DB에 저장
+- 작성된 메시지 목록을 브라우저에서 조회 가능
+- MySQL 연동 및 자동 생성 시각 기록
+- UTF-8 인코딩 처리로 한글 메시지도 문제없이 저장
 
 ---
 
-## 💻 기술 스택
+## 🛠 사용 기술
 
-| 항목        | 내용                      |
-|-------------|---------------------------|
-| Language    | Java 23                   |
-| DB          | MySQL 8 (port: 3307)      |
-| Build Tool  | Maven                     |
-| IDE         | IntelliJ IDEA             |
-| DB 연결     | JDBC                      |
+- Java 17
+- IntelliJ IDEA
+- MySQL 8.x (포트: 3307)
+- JDBC (Java Database Connectivity)
+- Maven
 
 ---
 
-## 🧩 테이블 구조
+## 📂 파일 구조 예시
+
+├── src/
+│ └── main/
+│ └── java/
+│ └── com/example/guestbook/
+│ ├── GuestbookServer.java
+│ ├── DBUtil.java
+│ └── Message.java
+├── pom.xml
+└── README.md
+
+pgsql
+복사
+편집
+
+---
+
+## ⚙️ DB 테이블 구조
 
 ```sql
-CREATE TABLE message (
+CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    content TEXT NOT NULL,
+    message TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+🚀 실행 방법
+MySQL 서버 실행 (포트: 3307)
+비밀번호: 1234 (설정한 값 기준)
+
+IntelliJ에서 GuestbookServer.java 실행
+
+브라우저에서 접속:
+
+arduino
+복사
+편집
+http://localhost:8080
+메시지 작성 → DB에 저장
+작성된 메시지 목록 출력
+
+🧪 문제 해결 경험
+문제
+MySQL 접속 오류 / 포트 충돌 / 인코딩 깨짐 문제 발생
+
+해결
+jdbc:mysql://localhost:3307/guestbook?useUnicode=true&characterEncoding=UTF-8 설정
+
+MySQL 드라이버 추가 (pom.xml)
+
+IntelliJ에서 Maven Reimport 및 JDK 설정 재확인
+
+🙋‍♂️ 만든이
+김재훈 (인천재능대학교 컴퓨터소프트웨어학과)
+
+GitHub: jaehoonkim940214
