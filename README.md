@@ -1,6 +1,25 @@
 🚀 실행 방법
 MySQL 서버 실행 (포트: 3307, 비밀번호: 1234)
 
+MySQL에서 아래 SQL을 실행하여 guestbook 데이터베이스와 messages 테이블을 생성하세요:
+
+---------
+
+CREATE DATABASE IF NOT EXISTS guestbook;
+USE guestbook;
+
+DROP TABLE IF EXISTS messages;
+
+CREATE TABLE messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+--------------------------
+
+
 전제 조건 (이게 충족되면 정상 작동)
 MySQL 서버가 실행 중이어야 하고 (포트: 3307, 비번: 1234)
 
